@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping List</title>
+  <style>
+    .shopping-list {
+      list-style: none;
+      padding: 0;
+    }
+    .shopping-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    .shopping-list input[type="text"] {
+      width: 70%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .shopping-list input[type="button"] {
+      width: 20%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: lightblue;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Shopping List</h1>
+  <form>
+    <input type="text" id="item" placeholder="Enter item">
+    <input type="button" value="Add" onclick="addItem()">
+  </form>
+  <ul class="shopping-list" id="list">
+  </ul>
+  <script>
+    function addItem() {
+      const item = document.getElementById("item").value;
+      const list = document.getElementById("list");
+      const newItem = document.createElement("li");
+      newItem.innerHTML = `
+        ${item}
+        <input type="button" value="Delete" onclick="deleteItem(this)">
+      `;
+      list.appendChild(newItem);
+      document.getElementById("item").value = "";
+    }
+    function deleteItem(btn) {
+      btn.parentElement.remove();
+    }
+  </script>
+</body>
+</html>
